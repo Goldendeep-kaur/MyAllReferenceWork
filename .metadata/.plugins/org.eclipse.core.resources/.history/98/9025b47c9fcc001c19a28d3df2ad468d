@@ -1,0 +1,20 @@
+package Model;
+
+public class ProductPojo {
+	private int productId;
+	private int productCost;
+	private String productName;
+	private String productDescription;
+	private String productImgUrl;
+	
+	public ProductPojo(int productId, int productCost, String productName, String productDescription,
+			String productImgUrl) {
+		super();
+		this.productId = productId;
+		this.productCost = productCost;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.productImgUrl = productImgUrl;
+	}
+	
+}
