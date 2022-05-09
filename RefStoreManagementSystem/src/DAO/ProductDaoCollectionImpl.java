@@ -1,6 +1,7 @@
 package DAO;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import Model.ProductPojo;
@@ -21,18 +22,35 @@ public class ProductDaoCollectionImpl implements ProductDao {
 	@Override
 	public ProductPojo addProduct(ProductPojo productPojo) {
 		// TODO Auto-generated method stub
-		return null;
+		int newProductId=allProducts.get(allProducts.size()-1).getProductId()+1;
+		productPojo.setProductId(newProductId);
+		allProducts.add(productPojo);
+		return productPojo;
 	}
 
 	@Override
 	public ProductPojo updateProduct(ProductPojo productPojo) {
 		// TODO Auto-generated method stub
-		return null;
+		for(int i=0;i<allProducts.size();i++) {
+			if(allProducts.get(i).getProductId()== productPojo.getProductId()) {
+			allProducts.set(i, productPojo);
+			break;
+		}
+		}return productPojo;
 	}
 
 	@Override
-	public void deleteProduct(int roductId) {
+	public void deleteProduct(int productId) {
 		// TODO Auto-generated method stub
+		Iterator<ProductPojo>allProductsItr= allProducts.iterator();
+		while(allProductsItr.hasNext()) {
+			ProductPojo getProduct= allProductsItr.next();
+			if(getProduct.getProductId()==productId) {
+				allProducts.remove(getProduct);
+				break;
+			}
+			
+		}
 		
 	}
 
