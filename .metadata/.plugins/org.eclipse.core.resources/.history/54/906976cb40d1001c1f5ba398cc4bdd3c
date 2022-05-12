@@ -1,0 +1,48 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+import exception.EmptyCatelogException;
+import exception.SystemException;
+import model.AdminPojo;
+
+public class AdminDaoDBImpl  implements AdminDao{
+
+	public AdminPojo addBook(AdminPojo adminPojo) {
+			Connection conn;
+			try {
+				conn= DBUtil.makeConnection();
+				Statement stmt= conn.createStatement();
+				String query= "INSERT INTO book_details(book_isbn, book_name, book_publisher, book_image_url)VALUES('"+adminPojo.getBookIsbn()+"','"+adminPojo.getBookName()+"','"+adminPojo.getBookPublisher()+"','')";
+				int rowsAffectd=stmt.executeUpdate(query);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+	public AdminPojo updateBook(AdminPojo adminPojo) throws SystemException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deleteBook(int bookId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<AdminPojo> getAllBooks() throws EmptyCatelogException, SystemException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public AdminPojo getABook(int bookId) throws SystemException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

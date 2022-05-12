@@ -2,6 +2,7 @@ package Presentation;
 
 import java.util.Scanner;
 
+import Service.FaciltyMemberLogin;
 import Service.LoginService;
 import Service.LoginServiceImpl;
 
@@ -12,6 +13,7 @@ public class LMSystemMainClass {
 
 		Scanner scan= new Scanner(System.in);
 		LoginService loginService=new LoginServiceImpl();
+		
 		System.out.println("*****************************************************");
 		System.out.println("LIBRARY MANAGEMENT SYSTEM!!");
 		System.out.println("");
@@ -27,8 +29,17 @@ public class LMSystemMainClass {
 		System.out.println("*****************************************************");
 		switch(option) {
 		case 1:
+			LoginService adminService=new FaciltyMemberLogin();
+			
+			System.out.println("*************************************************");
+			System.out.println("You are in Admin Panel. Please Login with id and Password");
+			System.out.println("*************************************************");
+			
 			break;
 		case 2:
+			System.out.println("*************************************************");
+			System.out.println("You are in User Panel. Please Login with id and Password");
+			System.out.println("*************************************************");
 			break;
 		case 3:
 			System.out.println("");

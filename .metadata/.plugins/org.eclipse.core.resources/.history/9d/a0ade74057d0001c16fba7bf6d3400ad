@@ -1,0 +1,13 @@
+package Dao;
+
+import java.util.List;
+
+public interface LibraryDao {
+
+	LibraryPojo aadBooks();
+	LibraryPojo updateBook();
+	void deleteBook();
+	List<LibraryPojo>getAllBooks();
+	LibraryPojo getABook();
+}
+

@@ -2,9 +2,13 @@ package Service;
 
 import java.util.Scanner;
 
-public class FaciltyMemberLogin  {
+import model.LibraryPojo;
+
+public class FaciltyMemberLogin implements LoginService  {
 
 	public static void main(String[] args) {
+		
+		Scanner scan= new Scanner(System.in);
 
 		String facultyUsername;
 	    String facultyPassword;
@@ -42,6 +46,18 @@ public class FaciltyMemberLogin  {
 	        System.out.println("Invalid Username & Password!");
 	    }
 
+	}
+
+	@Override
+	public LibraryPojo adminLogin() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public LibraryPojo userLogin() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
