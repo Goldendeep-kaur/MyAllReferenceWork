@@ -14,6 +14,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
+		<item key="catalog" value="All Catalogs"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -44,14 +45,17 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="com.jdbc.project0"/>
-			<item value="com.jdbc.demo"/>
+			<item value=".com.jdbc.maven"/>
+			<item value="com.jdbc.maven"/>
+			<item value="com.jdbc.login"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="library-management-system"/>
-			<item value="jdbc-demo-maven"/>
+			<item value="library-management-test"/>
+			<item value="testing-library-version2"/>
+			<item value="lib-mgmt-systm"/>
+			<item value="library-login-system"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

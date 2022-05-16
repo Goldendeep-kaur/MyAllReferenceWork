@@ -1,9 +1,0 @@
-package Model;
-
-public class ProductPojo {
-	private int productId;
-	private int productCost;
-	private String productName;
-	private String productDescription;
-	private String productImgUrl;
-}
