@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import exception.EmptyCatelogException;
 import exception.SystemException;
+import Pojo.ReturnedBooksPojo;
 import Pojo.IssuBooksPojo;
 import Pojo.AdminViewPojo;
 import Pojo.BooksPojo;
@@ -16,6 +17,8 @@ import service.BookService;
 import service.BookServiceImpl;
 import service.IssueBookService;
 import service.IssueBooksServiceImpl;
+import service.ReturnBookService;
+import service.ReturnBookServiceImpl;
 import service.UserService;
 import service.UserServiceImpl;
 
@@ -31,6 +34,7 @@ public class LibraryManagementSystem {
 		BookService newBookService1 = new BookServiceImpl();
 		IssuBooksPojo borrowBookPojo = new IssuBooksPojo();
 		IssueBookService issueBk = new IssueBooksServiceImpl();
+		ReturnBookService retBookServ= new ReturnBookServiceImpl();
 		Scanner scan = new Scanner(System.in);
 		char proceed = 'y';
 		while (proceed == 'y') {
@@ -322,7 +326,9 @@ public class LibraryManagementSystem {
 						System.out.println("1.View All Books.");
 						System.out.println("2.Boorow Book");
 						System.out.println("3. View All Issued Books.");
-						System.out.println("4. Exit");
+						System.out.println("4. All Returend Books by this user..");
+						System.out.println("5.Return the Book");
+						System.out.println("6. Exit");
 						System.out.println("===========================================");
 						System.out.println("Please enter your option :");
 						int userOpt = scan.nextInt();
@@ -392,6 +398,67 @@ public class LibraryManagementSystem {
 							System.out.println("----------------------------------");
 							break;
 						case 4:
+							List<ReturnedBooksPojo> returnBooks=null;
+							try {
+								returnBooks=retBookServ.getAllReturnBooks(returnLoginUser.getUserId());
+							} catch (EmptyCatelogException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								System.out.println(e.getMessage());
+								break;
+							} catch (SystemException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								System.out.println(e.getMessage());
+								break;
+							}
+							System.out.println("----------------------------------");
+							
+							System.out.println("RETURN ID\tBOOK ID\t \tUSER ID\t\tRETURN DATE\t\t NUMBER OF BOOKS");
+							returnBooks.forEach((books)->System.out.println(books.getReturnBookId()+"\t"+"\t"+books.getBookId1()+"\t"+"\t"+books.getUserId1()+"\t"+"\t"+books.getReturnDate()+"\t"+"\t"+books.getBooksTotal()));
+							System.out.println("----------------------------------");
+							break;
+						case 5:
+							System.out.println("----------------------------------");
+							System.out.println("Enter Return id to return the book :");
+							int returnBookId=scan.nextInt();
+							ReturnedBooksPojo getbookPojo=null;
+							try {
+								getbookPojo= retBookServ.getAbook(returnBookId);
+							} catch (SystemException e) {
+								System.out.println(e.getMessage());
+								break;
+							}
+							if(getbookPojo==null) {
+								System.out.println("Book Id not Exist...");
+								break;
+							}else {
+								System.out.println("----------------------------------");
+								System.out.println("Book to return is :");
+								System.out.println("Return id: "+getbookPojo.getReturnBookId());
+								System.out.println("Book Id :"+getbookPojo.getBookId1());
+								System.out.println("User Id :"+getbookPojo.getUserId1());
+								System.out.println("Return Date:"+getbookPojo.getReturnDate());
+								System.out.println("Number of books :"+getbookPojo.getBooksTotal());
+								System.out.println("==================================");
+								System.out.println("Are you ready to return books?(y/n) :");
+								char answer= scan.next().charAt(0);
+								if(answer=='y') {
+									try {
+										retBookServ.returnBooks(returnBookId);
+									} catch (SystemException e) {
+										System.out.println(e.getMessage());
+										break;
+									}
+									System.out.println("----------------------------------");
+									System.out.println("Book returned from your portal to library");
+								}else {
+									System.out.println("Book did not returened successfully......");
+								}
+							}
+							
+							break;
+						case 6:
 							System.out.println("*************************************************");
 							System.out.println("***  Thank you for being part of our system.  ***");
 							System.out.println("*************************************************");
