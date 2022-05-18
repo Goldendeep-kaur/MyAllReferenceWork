@@ -45,13 +45,14 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value=".com.jdbc.maven"/>
 			<item value="com.jdbc.maven"/>
+			<item value=".com.jdbc.maven"/>
 			<item value="com.jdbc.login"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="Library-management-system-proj"/>
 			<item value="library-management-test"/>
 			<item value="testing-library-version2"/>
 			<item value="lib-mgmt-systm"/>
