@@ -1,5 +1,7 @@
 package presentation;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,11 +9,14 @@ import exception.EmptyCatelogException;
 import exception.SystemException;
 import model.AdminViewPojo;
 import model.BooksPojo;
+import model.IssuBooksPojo;
 import model.UserPojoo;
 import service.AdminViewService;
 import service.AdminViewServiceImpl;
 import service.BookService;
 import service.BookServiceImpl;
+import service.IssueBookService;
+import service.IssueBooksServiceImpl;
 import service.UserService;
 import service.UserServiceImpl;
 
@@ -22,6 +27,9 @@ public class test2 {
 		UserService newUser= new UserServiceImpl();
 		BookService newBookService= new BookServiceImpl();
 		AdminViewService admService= new AdminViewServiceImpl();
+		BooksPojo updateBookPojo=null;
+		BookService newBookService1= new BookServiceImpl();
+		IssuBooksPojo borrowBookPojo=new IssuBooksPojo();
 		Scanner scan= new Scanner(System.in);
 		char proceed='y';
 		while(proceed=='y') {
@@ -111,9 +119,9 @@ public class test2 {
 						
 						System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 						System.out.println("Please enter your option :");
-						int userOptn =scan.nextInt();
+						int AdminOptn =scan.nextInt();
 						System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-						switch(userOptn) {
+						switch(AdminOptn) {
 						case 1:
 							List<AdminViewPojo> person3;
 							try {
@@ -157,12 +165,12 @@ public class test2 {
 							break;
 							
 						case 3:
-							BookService newBookService1= new BookServiceImpl();
+							//BookService newBookService1= new BookServiceImpl();
 							
 							System.out.println("**************************");
 							System.out.println("Please enter Book Id to be Updated :");
 							int updateBookId= scan.nextInt();
-							BooksPojo updateBookPojo=null;
+							//BooksPojo updateBookPojo=null;
 							try {
 								updateBookPojo= newBookService1.getABook(updateBookId);
 							} catch (SystemException e2) {
@@ -287,7 +295,7 @@ public class test2 {
 				 
 			case 2:
 				UserPojoo loginPojo1= new UserPojoo();
-				
+				IssueBookService issueBk= new IssueBooksServiceImpl();
 				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				System.out.println("This will be Login window and it is under process yet!!!");
 				
@@ -301,16 +309,17 @@ public class test2 {
 				try {
 					System.out.println("I am in try block");
 					returnLoginUser= newUser.validateLogin(loginPojo1);
+					
 				} catch (SystemException e) {
 					e.printStackTrace();
-//					System.out.println("********************************");
-//					System.out.println("Sorry Your request cannot process at this time.");
-//					System.out.println("Please try again later");
-//					System.out.println("********************************");
-//					System.out.println(e.getMessage());
-					//break;
+					System.out.println("********************************");
+					System.out.println("Sorry Your request cannot process at this time.");
+					System.out.println("Please try again later");
+					System.out.println("********************************");
+					System.out.println(e.getMessage());
+					break;
 				}
-				
+				System.out.println("this is user id="+returnLoginUser.getUserId());
 				String uType= returnLoginUser.getUserType();
 				if(uType!=null && uType.equals("Admin")) {
 					System.out.println("*************");
@@ -330,12 +339,13 @@ public class test2 {
 						System.out.println("4. Delete Book.");
 						System.out.println("5. View All Books");
 						System.out.println("6 View A book. ");
+						
 						System.out.println("7. Exit");
 						System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 						System.out.println("Please enter your option :");
-						int userOpt =scan.nextInt();
+						int AdminOpt =scan.nextInt();
 						System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-						switch(userOpt) {
+						switch(AdminOpt) {
 						case 1:
 							List<AdminViewPojo> person1;
 							try {
@@ -368,6 +378,88 @@ public class test2 {
 					//menu for admin here
 					System.out.println("User menu");
 					System.out.println("***************");
+					System.out.println("1.View All Books.");
+					System.out.println("2.Boorow Book");
+					System.out.println("3. View All Issued Books.");
+					
+					/********************************************************************/
+					
+					System.out.println("4. Exit");
+					System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+					System.out.println("Please enter your option :");
+					int AdminOpt =scan.nextInt();
+					System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+					switch(AdminOpt) {
+					
+					case 1:
+						List<BooksPojo> everyBook = null ;
+						try {
+							everyBook= newBookService.getAllBooks();
+						} catch (EmptyCatelogException e) {
+							System.out.println(e.getMessage());
+						} catch (SystemException e) {
+							System.out.println(e.getMessage());
+							break;
+						}
+						System.out.println("***********************");
+						System.out.println("BOOK ID\tBOOK ISBN\tBOOK NAME\tBOOK PUBLISHER\tBOOK QUANTITY");
+						System.out.println("***********************");
+						everyBook.forEach((book)->System.out.println(book.getBookId()+"\t"+ book.getBookIsbn()+"\t"+book.getBookName()+"\t"+book.getBookPublisher()+"\t"+book.getBookQuantity()));
+						System.out.println("************************");
+//						System.out.println("Do You Want to Continue?(y/n");
+//						optn=scan.next().charAt(0);
+						break;
+					case 2:
+						
+						
+						System.out.println("Please enter Book Id:");
+						scan.nextLine();
+						borrowBookPojo.setBookId(scan.nextInt());
+						System.out.println("Please enter your id here :");
+						borrowBookPojo.setUserId(scan.nextInt());
+						System.out.println("Please enter today's date :");
+						scan.nextLine();
+						borrowBookPojo.setIssuedDate(scan.nextLine());
+						
+						System.out.println("Enter how many days you need for that book(maximum 8 days):");
+						borrowBookPojo.setTimePeriod(scan.nextInt());
+						System.out.println("enter number of books you need :");
+						borrowBookPojo.setBooksTotal(scan.nextInt());
+						IssuBooksPojo newBorrowBook=null;
+						try {
+							newBorrowBook= issueBk.borrowBooks(borrowBookPojo);
+						} catch (SystemException e1) {
+							System.out.println(e1.getMessage());
+						}
+						System.out.println("-----------------------");
+						System.out.println("New book addedd on your account!\n Issue Id :"+ newBorrowBook.getIssuedId()+"\n Book Id :"+newBorrowBook.getBookId());
+						System.out.println("-----------------------");
+						break;
+						
+					case 3:
+						System.out.println("this is user id="+returnLoginUser.getUserId());
+						List<IssuBooksPojo> everyIssueBook=new ArrayList<IssuBooksPojo>();
+						
+//						System.out.println("Enter user id to view:");
+//						borrowBookPojo.setUserId(scan.nextInt());
+						try {
+							everyIssueBook= issueBk.getallIssueBooks(returnLoginUser.getUserId());
+						} catch (EmptyCatelogException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						catch(SystemException e){
+							System.out.println(e.getMessage());
+						}
+						System.out.println("----------------------------------");
+						System.out.println("ISSUE ID\t BOOK ID\t USER ID\tISSUE DATE\tTIME TO RETURN(DAYS)");
+						System.out.println("----------------------------------");
+						everyIssueBook.forEach((iBook)->System.out.println(iBook.getIssuedId()+"\t"+iBook.getBookId()+"\t"+iBook.getUserId()+"\t"+iBook.getTimePeriod()+"\t"+iBook.getIssuedDate()));
+						System.out.println("----------------------------------");
+						break;
+					}
+					
+					/********************************************************************/
 					break;
 				}
 				

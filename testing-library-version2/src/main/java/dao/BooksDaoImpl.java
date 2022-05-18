@@ -98,8 +98,24 @@ public class BooksDaoImpl implements BooksDao{
 
 	@Override
 	public BooksPojo getABook(int bookId) throws SystemException {
+		BooksPojo booksPojo=null;
+		
+		Connection conn=null;
+		try {
+			conn= DBUtil.makeConnection();
+			Statement stmt=conn.createStatement();
+			String query="SELECT * FROM book_details WHERE book_id="+bookId;
+			ResultSet resultSet=stmt.executeQuery(query);
+			if(resultSet.next()) {
+				booksPojo= new BooksPojo(resultSet.getInt(1),resultSet.getInt(2),resultSet.getString(3),resultSet.getString(4),resultSet.getInt(5),resultSet.getString(6));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// TODO Auto-generated method stub
-		return null;
+		return booksPojo;
 	}
 
 }
