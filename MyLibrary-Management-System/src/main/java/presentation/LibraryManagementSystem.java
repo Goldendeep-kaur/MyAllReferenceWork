@@ -360,7 +360,7 @@ public class LibraryManagementSystem {
 							borrowBookPojo.setBookId(scan.nextInt());
 							System.out.println("Please enter your id here :");
 							borrowBookPojo.setUserId(scan.nextInt());
-							System.out.println("Please enter today's date :");
+							System.out.println("Please enter today's date(YYYY/MM/DD) :");
 							scan.nextLine();
 							borrowBookPojo.setIssuedDate(scan.nextLine());
 

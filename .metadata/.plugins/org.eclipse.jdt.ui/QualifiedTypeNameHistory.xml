@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="model.LibraryPojo"/>
-    <fullyQualifiedTypeName name="Dao.LibraryDao"/>
-    <fullyQualifiedTypeName name="dao.AdminDao"/>
-    <fullyQualifiedTypeName name="dao.AdminDaoDBImpl"/>
-    <fullyQualifiedTypeName name="service.AdminService"/>
-    <fullyQualifiedTypeName name="service.AdminServiceImpl"/>
     <fullyQualifiedTypeName name="model.AdminPojo"/>
     <fullyQualifiedTypeName name="model.ExistingUserPojo"/>
     <fullyQualifiedTypeName name="dao.CreateUserDao"/>
@@ -23,10 +17,8 @@
     <fullyQualifiedTypeName name="exception.AppException"/>
     <fullyQualifiedTypeName name="java.util.logging.LogManager"/>
     <fullyQualifiedTypeName name="dao.DBUtil"/>
-    <fullyQualifiedTypeName name="dao.UserDao"/>
     <fullyQualifiedTypeName name="dao.UserDaoImpl"/>
     <fullyQualifiedTypeName name="pojo.UserPojo"/>
-    <fullyQualifiedTypeName name="dao.BooksDao"/>
     <fullyQualifiedTypeName name="dao.BooksDaoImpl"/>
     <fullyQualifiedTypeName name="model.UserPojoo"/>
     <fullyQualifiedTypeName name="model.AdminViewPojo"/>
@@ -36,14 +28,9 @@
     <fullyQualifiedTypeName name="dao.IssueBooksDaoImpl"/>
     <fullyQualifiedTypeName name="model.IssuBooksPojo"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="service.UserService"/>
-    <fullyQualifiedTypeName name="service.UserServiceImpl"/>
     <fullyQualifiedTypeName name="service.AdminViewServiceImpl"/>
     <fullyQualifiedTypeName name="service.AdminViewService"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="service.BookService"/>
-    <fullyQualifiedTypeName name="service.BookServiceImpl"/>
-    <fullyQualifiedTypeName name="Pojo.BooksPojo"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="service.IssueBookService"/>
@@ -60,4 +47,17 @@
     <fullyQualifiedTypeName name="service.ReturnBookService"/>
     <fullyQualifiedTypeName name="service.ReturnBookServiceImpl"/>
     <fullyQualifiedTypeName name="model.BooksPojo"/>
+    <fullyQualifiedTypeName name="dao.BooksDao"/>
+    <fullyQualifiedTypeName name="service.BookService"/>
+    <fullyQualifiedTypeName name="service.BookServiceImpl"/>
+    <fullyQualifiedTypeName name="Pojo.BooksPojo"/>
+    <fullyQualifiedTypeName name="org.mockito.junit.jupiter.MockitoExtension"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.extension.ExtendWith"/>
+    <fullyQualifiedTypeName name="dao.UserDao"/>
+    <fullyQualifiedTypeName name="org.mockito.Mock"/>
+    <fullyQualifiedTypeName name="service.UserService"/>
+    <fullyQualifiedTypeName name="service.UserServiceImpl"/>
+    <fullyQualifiedTypeName name="org.mockito.InjectMocks"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
+    <fullyQualifiedTypeName name="Pojo.UserPojoo"/>
 </qualifiedTypeNameHistroy>

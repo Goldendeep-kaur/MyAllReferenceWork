@@ -52,6 +52,7 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="MyLibrary-Management-System"/>
 			<item value="Library-management-system-proj"/>
 			<item value="library-management-test"/>
 			<item value="testing-library-version2"/>
